@@ -1,0 +1,52 @@
+html,
+body {
+  min-width: $s-screen;
+  margin: 0;
+  padding: 0 $s-field;
+  font-family: "Rubik", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: $green;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  @media (min-width: $m-screen) {
+    padding: 0 $m-field;
+  }
+
+  @media (min-width: $l-screen) {
+    padding: 0 $l-field;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+
+  &:focus,
+  &:hover {
+  }
+
+  &:active {
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
