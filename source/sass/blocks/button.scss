@@ -1,0 +1,19 @@
+.button {
+  @include button-reset;
+  display: inline-block;
+  padding: 20px;
+  color: #ffffff;
+  background-color: $green;
+  border-radius: 5px;
+  transition-duration: 0.25s;
+
+  &:focus,
+  &:hover {
+    background-color: $l-green;
+  }
+
+  &:active {
+    background-color: $green;
+    box-shadow: inset 0px 5px 5px 0 rgba(0, 0, 0, 0.3);
+  }
+}
