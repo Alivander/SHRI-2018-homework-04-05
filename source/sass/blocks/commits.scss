@@ -1,0 +1,22 @@
+.commits {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.commits__title {
+  grid-column: span 5;
+}
+
+.commits__list {
+  grid-column: span 3;
+  margin: 0;
+  border: 1px solid $border;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.commits__tree {
+  grid-column: span 2;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
