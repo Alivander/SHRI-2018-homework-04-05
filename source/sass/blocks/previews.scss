@@ -1,0 +1,21 @@
+.previews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 20px;
+
+  @media (min-width: $m-screen) {
+    grid-gap: 20px;
+    grid-row-gap: 30px;
+  }
+}
+
+.previews__title {
+  grid-column: span 2;
+}
+
+.previews__file {
+  grid-column: 1fr;
+  min-height: 50px;
+  border: 1px solid $border;
+  border-radius: 5px;
+}
