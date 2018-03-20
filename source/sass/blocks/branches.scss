@@ -1,0 +1,22 @@
+.branches {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.branches__title {
+  grid-column: span 3;
+}
+
+.branches__list {
+  grid-column: span 1;
+  margin: 0;
+  border: 1px solid $border;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.branches__tree {
+  grid-column: span 2;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
