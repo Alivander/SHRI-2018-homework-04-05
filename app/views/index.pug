@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  header.header
+    h1=title
+  main.content
+    section.content__header
+      form.content__form(action="#" method="get")
+        h2.content__form-title Your local repositories
+        input.content__name-repo(type="text")
+        button.button.content__select-repo(type="submit") Select other repositories
+    section.branches.content__branches
+      h2.branches__title Branches
+      ul.branches__list
+        li.branches__name
+      ul.tree.branches__tree
+        li.tree__folder
+        li.tree__file
+    section.commits.content__commits
+      h2.commits__title Commits
+      ul.tree.commits__tree
+        li.tree__folder
+        li.tree__file
+      ul.commits__list
+        li.commits__item
+          date.commits__date
+          p.commits__message
+          span.commits__hash
+    section.previews.content__previews
+      h2.previews__title Files
+      .previews__file
+      .previews__file
