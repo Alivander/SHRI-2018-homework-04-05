@@ -1,0 +1,56 @@
+.content {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-row-gap: 20px;
+
+  @media (min-width: $m-screen) {
+    grid-gap: 20px;
+    grid-row-gap: 30px;
+  }
+}
+
+.content__header {
+  grid-column: span 8;
+}
+
+.content__form {
+  display: grid;
+  grid-template-areas: "a a a a a a a c"
+                       "b b b b b b b c";
+  grid-template-rows: 30px 40px;
+  grid-gap: 20px;
+  grid-row-gap: 0;
+}
+
+.content__form-title {
+  grid-area: a;
+  margin: 0;
+}
+
+.content__name-repo {
+  grid-area: b;
+  border: 1px solid $green;
+  border-radius: 5px;
+  outline: none;
+
+  &:focus,
+  &:hover {
+    border-color: $l-green;
+  }
+}
+
+.content__select-repo {
+  grid-area: c;
+}
+
+.content__branches {
+  grid-column: span 3;
+}
+
+.content__commits {
+  grid-column: span 5;
+}
+
+.content__previews {
+  grid-column: span 8;
+}
