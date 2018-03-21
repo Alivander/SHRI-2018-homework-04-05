@@ -4,7 +4,7 @@
 *.pdf
 *.psd
 *.sublime*
-build/
+app/public/
 template/
 npm-debug.*
 Thumbs.db
