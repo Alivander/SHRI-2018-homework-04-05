@@ -29,6 +29,10 @@
 
 .content__name-repo {
   grid-area: b;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 5px;
   border: 1px solid $green;
   border-radius: 5px;
   outline: none;
