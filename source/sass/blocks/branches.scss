@@ -10,6 +10,7 @@
 .branches__list {
   grid-column: span 1;
   margin: 0;
+  padding-left: $m-field;
   border: 1px solid $border;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;

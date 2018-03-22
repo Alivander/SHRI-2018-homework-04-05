@@ -10,6 +10,7 @@
 .commits__list {
   grid-column: span 3;
   margin: 0;
+  padding-left: $m-field;
   border: 1px solid $border;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
