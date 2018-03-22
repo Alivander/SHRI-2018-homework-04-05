@@ -9,17 +9,7 @@ block content
     section.branches.content__branches
       h2.branches__title Branches
       .branches__wrapper
-        ul.branches__list
+        ul.branches__list.branches__list--one
           each branch in branches
             li.branches__name
               a(href= branch)= branch
-        ul.tree.branches__tree
-    section.commits.content__commits
-      h2.commits__title Commits
-      .commits__wrapper
-        ul.tree.commits__tree
-        ul.commits__list
-    section.previews.content__previews
-      h2.previews__title Files
-      .previews__file
-      .previews__file
