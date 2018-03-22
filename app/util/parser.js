@@ -24,7 +24,7 @@ var parser = {
     });
 
     branches.sort();
-    delete branches[branches.indexOf("master")];
+    branches.splice([branches.lastIndexOf("master")], 1);
     branches.unshift("master");
 
     return branches;
