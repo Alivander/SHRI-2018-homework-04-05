@@ -10,7 +10,8 @@
 .branches__list {
   grid-column: span 1;
   margin: 0;
-  padding-left: $m-field;
+  padding: 0;
+  list-style: none;
   border: 1px solid $border;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -20,4 +21,17 @@
   grid-column: span 2;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.branches__name {
+  padding: 10px;
+
+  &--current {
+    color: #ffffff;
+    background-color: $green;
+  }
+}
+
+.branches__name a {
+  text-decoration: none;
 }
