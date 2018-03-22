@@ -6,10 +6,12 @@
 .commits__list {
   grid-column: span 3;
   margin: 0;
-  padding-left: $m-field;
+  padding: 0;
+  list-style: none;
   border: 1px solid $border;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  border-left: none;
 }
 
 .commits__tree {
@@ -20,9 +22,22 @@
 
 .commits__item {
   padding: 10px;
+  border-bottom: 1px solid $border;
+
+  &:last-child {
+    border-bottom: none;
+  }
 
   &--current {
     color: #ffffff;
     background-color: $green;
   }
+}
+
+.commits__item p {
+  margin: 0;
+}
+
+.commits__item b {
+  font-weight: 500;
 }

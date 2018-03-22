@@ -11,6 +11,12 @@
   border: 1px solid $border;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  border-right: none;
+
+  &--one {
+    border-right: 1px solid $border;
+    border-radius: 5px;
+  }
 }
 
 .branches__tree {
@@ -21,6 +27,11 @@
 
 .branches__name {
   padding: 10px;
+  border-bottom: 1px solid $border;
+
+  &:last-child {
+    border-bottom: none;
+  }
 
   &--current {
     color: #ffffff;

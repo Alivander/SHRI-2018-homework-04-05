@@ -25,6 +25,7 @@
 .content__form-title {
   grid-area: a;
   margin: 0;
+  font-size: inherit;
 }
 
 .content__name-repo {
@@ -34,6 +35,7 @@
   margin: 0;
   padding: 5px;
   font-weight: 500;
+  font-size: 20px;
   border: 1px solid $green;
   border-radius: 5px;
   outline: none;
