@@ -1,10 +1,6 @@
-.commits {
+.commits__wrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-}
-
-.commits__title {
-  grid-column: span 5;
 }
 
 .commits__list {

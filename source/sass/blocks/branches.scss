@@ -1,10 +1,6 @@
-.branches {
+.branches__wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-}
-
-.branches__title {
-  grid-column: span 3;
 }
 
 .branches__list {
