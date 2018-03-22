@@ -21,3 +21,12 @@
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+
+.commits__item {
+  padding: 10px;
+
+  &--current {
+    color: #ffffff;
+    background-color: $green;
+  }
+}
