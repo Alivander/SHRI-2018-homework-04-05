@@ -18,12 +18,6 @@ var imagemin = require("gulp-imagemin");
 var plumber = require("gulp-plumber");
 var sourcemaps = require("gulp-sourcemaps");
 
-gulp.task("components", function () {
-  return gulp.src("source/components/**/*")
-    .pipe(plumber())
-    .pipe(gulp.dest("app/views"))
-});
-
 gulp.task("style", function() {
   return gulp.src("source/sass/style.scss")
     .pipe(plumber())
@@ -82,7 +76,6 @@ gulp.task("images-prod", function () {
 });
 
 gulp.task("watcher", function () {
-    gulp.watch("source/components/**/*", ["components"]);
     gulp.watch("source/sass/**/*.scss", ["style"]);
     gulp.watch("source/js/**/*.js", ["script"]);
     gulp.watch("source/img/**/*", ["images"]);
@@ -95,7 +88,6 @@ gulp.task("clean", function () {
 gulp.task("dev", function (done) {
   run(
       "clean",
-      "components",
       "style",
       "images",
       "script",
@@ -103,10 +95,9 @@ gulp.task("dev", function (done) {
   );
 });
 
-gulp.task("build", function (done) {
+gulp.task("prod", function (done) {
   run(
       "clean",
-      "components",
       "style-prod",
       "images-prod",
       "script-prod",
