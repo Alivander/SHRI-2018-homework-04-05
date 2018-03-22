@@ -4,17 +4,13 @@ block content
   header.header
     h1=title
   main.content
-    section.content__header
-      form.content__form(action="#" method="get")
-        h2.content__form-title Your local repositories
-        p.content__name-repo=url
-        button.button.content__select-repo(type="submit") Select other repositories
+    include header
     section.branches.content__branches
       h2.branches__title Branches
       ul.branches__list
         each val in branches
           li.branches__name
-            a(href="#{val}")= val
+            a(href= val)= val
       ul.tree.branches__tree
         li.tree__folder
         li.tree__file
