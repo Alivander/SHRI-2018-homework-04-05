@@ -2,20 +2,23 @@ extends layout
 
 block content
   header.header
-    h1=title
+    h1
+      a= title
   main.content
     include header
     section.branches.content__branches
       h2.branches__title Branches
-      ul.branches__list
-        each val in branches
-          li.branches__name
-            a(href= val)= val
-      ul.tree.branches__tree
+      .branches__wrapper
+        ul.branches__list
+          each branch in branches
+            li.branches__name
+              a(href= branch)= branch
+        ul.tree.branches__tree
     section.commits.content__commits
       h2.commits__title Commits
-      ul.tree.commits__tree
-      ul.commits__list
+      .commits__wrapper
+        ul.tree.commits__tree
+        ul.commits__list
     section.previews.content__previews
       h2.previews__title Files
       .previews__file
