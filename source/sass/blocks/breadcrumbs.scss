@@ -1,0 +1,19 @@
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs__item {
+  &::after {
+    content: ">";
+    display: inline-block;
+    margin: 0 10px;
+    color: $border;
+  }
+  
+  &:last-child::after {
+    display: none;
+  }
+}
