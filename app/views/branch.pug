@@ -20,25 +20,16 @@ block content
             -};
         ul.tree.branches__tree
           each item in tree
-            - if (item.type === tree) {
+            - if (item.type === "tree") {
               li.tree__item.tree__item--folder
-                = item.name
+                a(href= branchCurrent + "/" + item.name)= item.name
             - } else {
               li.tree__item
-                = item.name
+                a(href= branchCurrent + "/" + item.name)= item.name
             - };
     section.commits.content__commits
       h2.commits__title Commits
       .commits__wrapper
-        ul.tree.commits__tree
-          each item in tree
-            - if (item.type === tree) {
-              li.tree__item.tree__item--folder
-                = item.name
-            - } else {
-              li.tree__item
-                = item.name
-            - };
         ul.commits__list
           each commit in commits
             li.commits__item
