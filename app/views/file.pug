@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  header.header
+    h1
+      a(href="/")= title
+  main.content
+    include header
+    section.branches.content__branches
+      h2.branches__title
+        |Branch:&nbsp;
+        = branchCurrent
+      - if (path && path.length) {
+        ul.breadcrumbs
+          li= path
+      - };
+    section.previews
+      div.previews__file
+        = file
