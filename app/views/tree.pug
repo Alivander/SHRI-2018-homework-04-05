@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  header.header
+    h1
+      a(href="/")= title
+  main.content
+    include header
+    section.branches.content__branches
+      h2.branches__title
+        |Branch:&nbsp;
+        = branchCurrent
+      - if (path && path.length) {
+        ul.breadcrumbs
+          li= path
+      - };
+      .branches__wrapper
+        ul.tree.branches__tree
+          each item in tree
+            - if (item.type === "tree") {
+              li.tree__item.tree__item--folder
+                - if (path && path.length) {
+                    a(href= path.join("/") + "/" + item.hash)= item.name
+                - } else {
+                    a(href= "tree/" + item.hash)= item.name
+                - };
+            - } else {
+              li.tree__item
+                - if (path && path.length) {
+                    a(href= path.join("/") + "/" + item.hash)= item.name
+                - } else {
+                    a(href= "tree/" + item.hash)= item.name
+                - };
+            - };
