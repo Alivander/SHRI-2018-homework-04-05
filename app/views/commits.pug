@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  header.header
+    h1
+      a(href="/")= title
+  main.content
+    include header
+    section.commits.content__commits
+      h2.commits__title
+        |Branch:&nbsp;
+        = branchCurrent
+      ul.breadcrumbs
+        li.breadcrumbs__item
+          a(href= branchCurrent)= branchCurrent
+        li.breadcrumbs__item
+          a(href= branchCurrent + "/commits") commits
+        - if (path && path.length) {
+          li= path
+        - };
+      .commits__wrapper
+        ul.commits__list
+          each commit in commits
+            li.commits__item
+              p.commits__hash
+                b Hash:&nbsp;
+                a(href= "commits/" + commit.hash)= commit.hash
+              p.commits__date
+                b Date:&nbsp;
+                = commit.date
+              p.commits__author
+                b Author:&nbsp;
+                = commit.author
+              p.commits__message
+                b Message:&nbsp;
+                = commit.message
