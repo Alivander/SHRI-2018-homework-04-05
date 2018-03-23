@@ -57,6 +57,7 @@ var parser = {
   treeList: (str) => {
     var modeLenght = 6;
     var typeLength = 4;
+    var hashLenght = 40;
     var treeResults = str.split("\n");
     var treeFolder = [];
     var treeFiles = [];
@@ -66,7 +67,8 @@ var parser = {
 
     treeResults.forEach((r) => {
       var item = {
-        type: r.slice(modeLenght + 1, modeLenght + 1 + typeLength),
+        type: r.substr(modeLenght + 1, typeLength),
+        hash: r.substr(modeLenght + 1 + typeLength + 1, hashLenght),
         name: r.slice(r.indexOf("\t") + 1, r.length)
       };
       (item.type === "tree") ? treeFolder.push(item) : treeFiles.push(item);
