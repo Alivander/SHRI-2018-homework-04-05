@@ -9,15 +9,19 @@
   padding: 0;
   list-style: none;
   border: 1px solid $border;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-left: none;
+  border-radius:5px;
 }
 
 .commits__tree {
   grid-column: span 2;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+}
+
+.commits__tree + .commits__list {
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .commits__item {
