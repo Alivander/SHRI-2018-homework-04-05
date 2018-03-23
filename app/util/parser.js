@@ -34,34 +34,47 @@ var parser = {
   commitsList: (str) => {
     var hashLenght = 40;
     var dateLenght = 10;
+    var commitsResults = str.split("\n");
     var commits = [];
-    var number = 0;
 
-    for (var i = 0; i < str.length - hashLenght; i++) {
-      var start = str.indexOf("+++", i) + 3;
-      var end = str.indexOf("+++", start);
-      var commitStr = str.slice(start, end);
+    commitsResults.pop();
 
-      var hash = commitStr.slice(0, hashLenght);
-      commitStr = commitStr.slice(hashLenght, commitStr.lenght);
-      var date = commitStr.slice(0, dateLenght);
-      commitStr = commitStr.slice(dateLenght, commitStr.lenght);
-      var author = commitStr.slice(0, commitStr.indexOf("----", 0));
-      commitStr = commitStr.slice(commitStr.indexOf("----", 0) + 4, commitStr.lenght);
-      var message = commitStr;
+    commitsResults.forEach((r) => {
+      var mark = r.indexOf("----", 0);
+      var markLength = 4;
 
-      commits[number] = {
-        hash: hash,
-        date: date,
-        author: author,
-        message: message
-      };
-
-      i = end + 3;
-      number++;
-    };
+      commits.push({
+        hash: r.slice(0, hashLenght),
+        date: r.slice(hashLenght, hashLenght + dateLenght),
+        author: r.slice(hashLenght + dateLenght, mark),
+        message: r.slice(mark + markLength, r.length)
+      });
+    });
 
     return commits;
+  },
+
+  treeList: (str) => {
+    var modeLenght = 6;
+    var typeLength = 4;
+    var treeResults = str.split("\n");
+    var treeFolder = [];
+    var treeFiles = [];
+    var tree = [];
+
+    treeResults.pop();
+
+    treeResults.forEach((r) => {
+      var item = {
+        type: r.slice(modeLenght + 1, modeLenght + 1 + typeLength),
+        name: r.slice(r.indexOf("\t") + 1, r.length)
+      };
+      (item.type === "tree") ? treeFolder.push(item) : treeFiles.push(item);
+    });
+
+    tree = treeFolder.concat(treeFiles);
+
+    return tree;
   }
 };
 
