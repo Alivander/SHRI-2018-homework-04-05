@@ -1,0 +1,56 @@
+extends layout
+
+block content
+  header.header
+    h1
+      a(href="/")= title
+  main.content
+    include header
+    section.branches.content__branches
+      h2.branches__title Branches
+      .branches__wrapper
+        ul.branches__list
+          each brunch in branches
+            - if (brunch === branchCurrent) {
+            li.branches__name.branches__name--current
+              a= brunch
+            - } else {
+            li.branches__name
+              a(href= brunch)= brunch
+            -};
+        ul.tree.branches__tree
+          each item in tree
+            - if (item.type === "tree") {
+              li.tree__item.tree__item--folder
+                a(href= branchCurrent + "/" + item.name)= item.name
+            - } else {
+              li.tree__item
+                a(href= branchCurrent + "/" + item.name)= item.name
+            - };
+    section.commits.content__commits
+      h2.commits__title Commits
+      .commits__wrapper
+        ul.tree.commits__tree
+          each item in tree
+            - if (item.type === tree) {
+              li.tree__item.tree__item--folder
+                = item.name
+            - } else {
+              li.tree__item
+                = item.name
+            - };
+        ul.commits__list
+          each commit in commits
+            li.commits__item
+              p.commits__hash
+                b Hash:&nbsp;
+                a(href= branchCurrent + "/" + commit.hash)= commit.hash
+              p.commits__date
+                b Date:&nbsp;
+                = commit.date
+              p.commits__author
+                b Author:&nbsp;
+                = commit.author
+              p.commits__message
+                b Message:&nbsp;
+                = commit.message
