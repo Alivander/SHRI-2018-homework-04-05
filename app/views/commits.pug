@@ -6,18 +6,7 @@ block content
       a(href="/")= title
   main.content
     include header
-    ul.breadcrumbs
-      li.breadcrumbs__item
-        a(href= "/" + branchCurrent)= branchCurrent
-        - if (path && path.length) {
-          - for (var i = 0; i < path.length - 1; i++) {
-            - var url = path.slice(0, i + 1).join("/");
-            - var item = path[i]
-              li.breadcrumbs__item
-                a(href= "/" + branchCurrent + "/commits/" + url)= item
-          - };
-          li.breadcrumbs__item= path[path.length - 1]
-        - };
+    include breadcrumbs
     section.commits.content__commits
       h2.commits__title
         |Branch:&nbsp;
