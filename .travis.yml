@@ -1,7 +1,13 @@
+sudo: false
 language: node_js
 
 node_js:
-  - "8.9"
+  - 'node'
+  - '8.9'
 
 notifications:
   email: false
+
+script:
+  - npm run lint
+  - npm run build
