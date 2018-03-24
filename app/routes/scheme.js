@@ -9,11 +9,6 @@ var options = {
   windowsHide: true
 };
 
-var renderBase = {
-  title: "GIT-LOC",
-  url: config.url,
-};
-
 function cpExec(command) {
 
   return new Promise(function(resolve, reject) {
@@ -27,11 +22,15 @@ function cpExec(command) {
 
   });
 
-};
+}
 
 var scheme = {
 
   index: function(req, res, next) {
+    var renderBase = {
+      title: "GIT-LOC",
+      url: config.url
+    };
     cpExec("git branch --no-abbrev --column")
       .then(brunchesString => {
         renderBase.branches = parser.branchesList(brunchesString);
@@ -43,9 +42,13 @@ var scheme = {
   },
 
   branch: function(req, res, next) {
+    var renderBase = {
+      title: "GIT-LOC",
+      url: config.url,
+      branchCurrent: req.params.branch
+    };
     cpExec("git ls-tree " + req.params.branch)
       .then(treeString => {
-        renderBase.branchCurrent = req.params.branch;
         res.render("branch", renderBase);
       })
       .catch(error => {
@@ -54,10 +57,15 @@ var scheme = {
   },
 
   tree: function(req, res, next) {
+    var renderBase = {
+      title: "GIT-LOC",
+      url: config.url,
+      branchCurrent: req.params.branch,
+      catalog: "tree",
+      path: []
+    };
     cpExec("git ls-tree " + req.params.branch)
       .then(treeString => {
-        renderBase.path = [];
-        renderBase.branchCurrent = req.params.branch;
         renderBase.tree = parser.treeList(treeString);
         res.render("tree", renderBase);
       })
@@ -66,43 +74,145 @@ var scheme = {
       });
   },
 
-  treeItem: function(req, res, next) {
-    renderBase.path = [];
-    if (req.params[0].indexOf("/")) {
-      renderBase.path = req.params[0].split("/");
-    } else {
-      renderBase.path.push(req.params[0]);
+  itemTree: function(req, res, next) {
+    var renderBase = {
+      title: "GIT-LOC",
+      url: config.url,
+      branchCurrent: req.params.branch,
+      catalog: "tree",
+      path: (req.params[0].indexOf("/")) ? req.params[0].split("/") : req.params[0]
     };
-    cpExec("git ls-tree " + renderBase.path[renderBase.path.length - 1])
-      .then(treeString => {
-        renderBase.branchCurrent = req.params.branch;
-        renderBase.tree = parser.treeList(treeString);
-        res.render("tree", renderBase);
+    cpExec("git ls-tree " + renderBase.branchCurrent + " " + req.params[0])
+      .then(currentItemString => {
+        var arr = parser.treeList(currentItemString);
+        return renderBase.currentItem = arr[0].hash;
       })
-      .catch(error => {
-        cpExec("git cat-file -p " + renderBase.path[renderBase.path.length - 1])
-          .then(file => {
-            renderBase.file = file;
-            res.render("file", renderBase);
+      .then(current => {
+        cpExec("git ls-tree " + renderBase.currentItem)
+          .then(treeString => {
+            renderBase.tree = parser.treeList(treeString);
+            res.render("tree", renderBase);
           })
           .catch(error => {
-            console.log('err: ' + error);
+            cpExec("git cat-file -p " + renderBase.currentItem)
+              .then(file => {
+                renderBase.file = file;
+                res.render("file", renderBase);
+              })
+              .catch(error => {
+                console.log('err: ' + error);
+              });
           });
+      })
+      .catch(error => {
+        console.log('err: ' + error);
       });
   },
 
   commits: function(req, res, next) {
+    var renderBase = {
+      title: "GIT-LOC",
+      url: config.url,
+      branchCurrent: req.params.branch,
+      catalog: "commits",
+      path: []
+    };
     cpExec("git log " + req.params.branch + " --date=short --pretty=format:%H%ad%an----%f")
       .then(commitsString => {
-        renderBase.path = [];
-        renderBase.branchCurrent = req.params.branch;
         renderBase.commits = parser.commitsList(commitsString);
         res.render("commits", renderBase);
       })
       .catch(error => {
         console.log('err: ' + error);
       });
+  },
+
+  commit: function(req, res, next) {
+    var renderBase = {
+      title: "GIT-LOC",
+      url: config.url,
+      branchCurrent: req.params.branch,
+      catalog: "commits",
+      path: [req.params.commit],
+      currentItem: req.params.commit
+    };
+    cpExec("git ls-tree " + req.params.commit)
+      .then(treeString => {
+        renderBase.tree = parser.treeList(treeString);
+        res.render("tree", renderBase);
+      })
+      .catch(error => {
+        console.log('err: ' + error);
+      });
+  },
+
+  commitTree: function(req, res, next) {
+    var renderBase = {
+      title: "GIT-LOC",
+      url: config.url,
+      branchCurrent: req.params.branch,
+      catalog: "commits",
+      commit: req.params.commit,
+      path: (req.params[0].indexOf("/")) ? req.params[0].split("/") : req.params[0]
+    };
+    cpExec("git ls-tree " + req.params.commit + " " + req.params[0])
+      .then(currentItemString => {
+        var arr = parser.treeList(currentItemString);
+        return renderBase.currentItem = arr[0].hash;
+      })
+      .then(current => {
+        cpExec("git ls-tree " + renderBase.currentItem)
+          .then(treeString => {
+            renderBase.tree = parser.treeList(treeString);
+            res.render("tree", renderBase);
+          })
+          .catch(error => {
+            cpExec("git cat-file -p " + renderBase.currentItem)
+              .then(file => {
+                renderBase.file = file;
+                res.render("file", renderBase);
+              })
+              .catch(error => {
+                console.log('err: ' + error);
+              });
+          });
+      })
+      .catch(error => {
+        console.log('err: ' + error);
+      });
   }
+
+    // Promise.all([
+    //   cpExec("git log " + req.params.branch + " --date=short --pretty=format:%H%ad%an----%f"),
+    //   cpExec("git ls-tree " + req.params.itemTree)
+    // ])
+    // .then(results => {
+    //   renderBase.branchCurrent = req.params.branch;
+    //   renderBase.commits = parser.commitsList(results[0]);
+    //   renderBase.tree = parser.treeList(results[1]);
+    //   res.render("branch", renderBase);
+    // })
+    // .catch(error => {
+    //   console.log('err: ' + error);
+    // });
+  //}
+
+  // branch: function(req, res, next) {
+  //   Promise.all([
+  //     cpExec("git log " + req.params.branch + " --date=short --pretty=format:%H%ad%an----%f"),
+  //     cpExec("git ls-tree " + req.params.branch)
+  //   ])
+  //   .then(results => {
+  //     renderBase.branchCurrent = req.params.branch;
+  //     renderBase.commits = parser.commitsList(results[0]);
+  //     renderBase.tree = parser.treeList(results[1]);
+  //     res.render("branch", renderBase);
+  //   })
+  //   .catch(error => {
+  //     console.log('err: ' + error);
+  //   });
+  // },
+  //
 
 };
 
