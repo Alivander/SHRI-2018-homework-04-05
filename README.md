@@ -8,9 +8,11 @@
 ```
 npm i
 npm start  // development-сборка (без оптимизации) и запуск сервера
-npm run build  // production-сборка (с оптимизацией), прогон через линтеры и запуск сервера
-npm run deploy // создание ветки и публикация ее на GitHub Pages
+
+npm run dev  // development-сборка (без оптимизации)
+npm run build  // production-сборка (с оптимизацией)
 npm run lint  // запуск линтеров для проверки кода
+npm run deploy // создание ветки и публикация ее на GitHub Pages
 
 ```
 Приложение работает с url репозитория, прописанным в app/config.js.
@@ -21,13 +23,13 @@ npm run lint  // запуск линтеров для проверки кода
 Хотела реализовать возможность указания пути к репозиторию из веб-интерфейса, но не успела.
 
 Используется:
-* Sass (синтаксис scss)
+* Sass (scss)
 * Pug
 * Gulp
 * Postcss (autoprefixer)
 * CssO, UgliFly, ImageMin (minification)
 * sourcemap
-* Код проверяется пакетами editorconfig, stylelint и eslint
+* editorconfig, stylelint и eslint
 * Express
 * Node.js
 

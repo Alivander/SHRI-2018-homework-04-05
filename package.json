@@ -6,11 +6,12 @@
   "author": "Alina Vanieva",
   "scripts": {
     "start": "gulp dev && node ./app/bin/www",
+    "dev": "gulp dev",
     "editorconfig": "editorconfig-cli",
     "stylelint": "stylelint \"source/sass/**/*.scss\" --syntax scss",
     "eslint": "node_modules/.bin/eslint ./ --fix --ignore-path .gitignore",
     "lint": "npm run editorconfig && npm run stylelint && npm run eslint",
-    "build": "gulp prod && npm run lint && node ./app/bin/www",
+    "build": "gulp prod",
     "deploy": "gh-pages -d ./"
   },
   "devDependencies": {
