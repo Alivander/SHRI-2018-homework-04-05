@@ -9,14 +9,14 @@
 
 .breadcrumbs__item {
   flex-shrink: 0;
-  
+
   &::after {
     content: ">";
     display: inline-block;
     margin: 0 10px;
     color: $border;
   }
-  
+
   &:last-child::after {
     display: none;
   }

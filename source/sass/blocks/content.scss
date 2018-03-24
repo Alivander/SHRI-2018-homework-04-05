@@ -13,23 +13,12 @@
   grid-column: span 8;
 }
 
-.content__form {
-  display: grid;
-  grid-template-areas: "a a a a a a a c"
-                       "b b b b b b b c";
-  grid-template-rows: 30px 40px;
-  grid-gap: 20px;
-  grid-row-gap: 0;
-}
-
 .content__form-title {
-  grid-area: a;
   margin: 0;
   font-size: inherit;
 }
 
 .content__name-repo {
-  grid-area: b;
   display: flex;
   align-items: center;
   margin: 0;
@@ -44,10 +33,6 @@
   &:hover {
     border-color: $l-green;
   }
-}
-
-.content__select-repo {
-  grid-area: c;
 }
 
 .content__branches {
