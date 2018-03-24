@@ -6,18 +6,22 @@ block content
       a(href="/")= title
   main.content
     include header
+    ul.breadcrumbs
+      li.breadcrumbs__item
+        a(href= "/" + branchCurrent)= branchCurrent
+        - if (path && path.length) {
+          - for (var i = 0; i < path.length - 1; i++) {
+            - var url = path.slice(0, i + 1).join("/");
+            - var item = path[i]
+              li.breadcrumbs__item
+                a(href= "/" + branchCurrent + "/commits/" + url)= item
+          - };
+          li.breadcrumbs__item= path[path.length - 1]
+        - };
     section.commits.content__commits
       h2.commits__title
         |Branch:&nbsp;
         = branchCurrent
-      ul.breadcrumbs
-        li.breadcrumbs__item
-          a(href= branchCurrent)= branchCurrent
-        li.breadcrumbs__item
-          a(href= branchCurrent + "/commits") commits
-        - if (path && path.length) {
-          li= path
-        - };
       .commits__wrapper
         ul.commits__list
           each commit in commits
