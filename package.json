@@ -6,8 +6,9 @@
   "author": "Alina Vanieva",
   "scripts": {
     "start": "gulp dev && node ./app/bin/www",
+    "editorconfig": "editorconfig-cli",
     "stylelint": "stylelint \"source/sass/**/*.scss\" --syntax scss",
-    "test": "npm run editorconfig-cli && npm run stylelint",
+    "test": "npm run editorconfig && npm run stylelint",
     "build": "gulp prod && test && node ./app/bin/www",
     "deploy": "gh-pages -d build"
   },
@@ -15,6 +16,9 @@
     "@htmlacademy/editorconfig-cli": "1.x",
     "autoprefixer": "7.2.x",
     "del": "^3.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
     "gh-pages": "^1.1.0",
     "gulp": "3.9.x",
     "gulp-concat": "^2.6.1",
