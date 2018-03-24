@@ -41,6 +41,9 @@ gulp.task("style-prod", function() {
     .pipe(gulp.dest("app/public/css"))
 });
 
+// Таски для изображений и клиентских скриптов оставлены для второго задания,
+// хотя в самом приложении они не требуются
+
 gulp.task("script", function () {
   return gulp.src("source/js/**/*.js")
     .pipe(plumber())
@@ -75,6 +78,12 @@ gulp.task("images-prod", function () {
     .pipe(gulp.dest("app/public/img"))
 });
 
+gulp.task("favicon", function () {
+  return gulp.src("source/favicon.ico")
+    .pipe(plumber())
+    .pipe(gulp.dest("app/public"))
+});
+
 gulp.task("watcher", function () {
     gulp.watch("source/sass/**/*.scss", ["style"]);
     gulp.watch("source/js/**/*.js", ["script"]);
@@ -90,6 +99,7 @@ gulp.task("dev", function (done) {
       "clean",
       "style",
       "images",
+      "favicon",
       "script",
       done
   );
@@ -100,6 +110,7 @@ gulp.task("prod", function (done) {
       "clean",
       "style-prod",
       "images-prod",
+      "favicon",
       "script-prod",
       done
   );
