@@ -8,9 +8,10 @@
     "start": "gulp dev && node ./app/bin/www",
     "editorconfig": "editorconfig-cli",
     "stylelint": "stylelint \"source/sass/**/*.scss\" --syntax scss",
-    "test": "npm run editorconfig && npm run stylelint",
-    "build": "gulp prod && test && node ./app/bin/www",
-    "deploy": "gh-pages -d build"
+    "eslint": "node_modules/.bin/eslint ./ --fix --ignore-path .gitignore",
+    "test": "npm run editorconfig && npm run stylelint && npm run eslint",
+    "build": "gulp prod && npm run test && node ./app/bin/www",
+    "deploy": "gh-pages -d ./"
   },
   "devDependencies": {
     "@htmlacademy/editorconfig-cli": "1.x",
@@ -26,7 +27,6 @@
     "gulp-imagemin": "^4.1.0",
     "gulp-plumber": "1.2.x",
     "gulp-postcss": "7.0.x",
-    "gulp-rename": "^1.2.2",
     "gulp-sass": "3.1.x",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglyfly": "^1.4.2",

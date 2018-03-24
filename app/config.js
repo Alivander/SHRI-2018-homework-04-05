@@ -1,7 +1,7 @@
-var config = {
-  url: "E:/github/test",
+const config = {
+  url: 'E:/github/test',
   port: 3000,
-  host: ""
+  host: '',
 };
 
 module.exports = config;

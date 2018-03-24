@@ -1,53 +1,53 @@
-var parser = {
+const parser = {
 
   branchesList: (str) => {
-    var str = str.split("");
-    var branches = [];
-    var number = 0;
-    var pass = false;
+    const simbols = str.split('');
+    const branches = [];
+    let number = 0;
+    let pass = false;
 
-    str.forEach((s) => {
-      if (s !== "*" && s !== " ") {
+    simbols.forEach((s) => {
+      if (s !== '*' && s !== ' ') {
         if (pass === true) {
           if (branches[number]) {
-            number++;
-          };
+            number += 1;
+          }
           pass = false;
-        };
+        }
         if (branches[number]) {
           branches[number] += s;
         } else {
           branches[number] = s;
-        };
+        }
       } else {
         pass = true;
-      };
+      }
     });
 
     branches.sort();
-    branches.splice([branches.lastIndexOf("master")], 1);
-    branches.unshift("master");
+    branches.splice([branches.lastIndexOf('master')], 1);
+    branches.unshift('master');
 
     return branches;
   },
 
   commitsList: (str) => {
-    var hashLenght = 40;
-    var dateLenght = 10;
-    var commitsResults = str.split("\n");
-    var commits = [];
+    const hashLenght = 40;
+    const dateLenght = 10;
+    const commitsResults = str.split('\n');
+    const commits = [];
 
     commitsResults.pop();
 
     commitsResults.forEach((r) => {
-      var mark = r.indexOf("----", 0);
-      var markLength = 4;
+      const mark = r.indexOf('----', 0);
+      const markLength = 4;
 
       commits.push({
         hash: r.slice(0, hashLenght),
         date: r.slice(hashLenght, hashLenght + dateLenght),
         author: r.slice(hashLenght + dateLenght, mark),
-        message: r.slice(mark + markLength, r.length)
+        message: r.slice(mark + markLength, r.length),
       });
     });
 
@@ -55,29 +55,33 @@ var parser = {
   },
 
   treeList: (str) => {
-    var modeLenght = 6;
-    var typeLength = 4;
-    var hashLenght = 40;
-    var treeResults = str.split("\n");
-    var treeFolder = [];
-    var treeFiles = [];
-    var tree = [];
+    const modeLenght = 6;
+    const typeLength = 4;
+    const hashLenght = 40;
+    const treeResults = str.split('\n');
+    const treeFolder = [];
+    const treeFiles = [];
+    let tree = [];
 
     treeResults.pop();
 
     treeResults.forEach((r) => {
-      var item = {
+      const item = {
         type: r.substr(modeLenght + 1, typeLength),
         hash: r.substr(modeLenght + 1 + typeLength + 1, hashLenght),
-        name: r.slice(r.indexOf("\t") + 1, r.length)
+        name: r.slice(r.indexOf('\t') + 1, r.length),
       };
-      (item.type === "tree") ? treeFolder.push(item) : treeFiles.push(item);
+      if (item.type === 'tree') {
+        treeFolder.push(item);
+      } else {
+        treeFiles.push(item);
+      }
     });
 
     tree = treeFolder.concat(treeFiles);
 
     return tree;
-  }
+  },
 };
 
 module.exports = parser;

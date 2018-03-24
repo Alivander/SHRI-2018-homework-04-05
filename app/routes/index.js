@@ -1,16 +1,17 @@
-var express = require("express");
-var router = express.Router({mergeParams: true});
-var scheme = require("./scheme");
+const express = require('express');
 
-router.get("/", scheme.index);
+const router = express.Router({ mergeParams: true });
+const scheme = require('./scheme');
 
-router.get("/:branch", scheme.branch);
+router.get('/', scheme.index);
 
-router.get("/:branch/tree", scheme.tree);
-router.get("/:branch/tree/*", scheme.itemTree);
+router.get('/:branch', scheme.branch);
 
-router.get("/:branch/commits", scheme.commits);
-router.get("/:branch/commits/:commit", scheme.commit);
-router.get("/:branch/commits/:commit/*", scheme.commitTree);
+router.get('/:branch/tree', scheme.tree);
+router.get('/:branch/tree/*', scheme.itemTree);
+
+router.get('/:branch/commits', scheme.commits);
+router.get('/:branch/commits/:commit', scheme.commit);
+router.get('/:branch/commits/:commit/*', scheme.commitTree);
 
 module.exports = router;
