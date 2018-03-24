@@ -1,11 +1,15 @@
 .breadcrumbs {
+  grid-column: span 8;
   display: flex;
   flex-wrap: wrap;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .breadcrumbs__item {
+  flex-shrink: 0;
+  
   &::after {
     content: ">";
     display: inline-block;
