@@ -12,7 +12,6 @@ npm start  // development-сборка (без оптимизации) и зап
 npm run dev  // development-сборка (без оптимизации)
 npm run build  // production-сборка (с оптимизацией)
 npm run lint  // запуск линтеров для проверки кода
-npm run deploy // создание ветки и публикация ее на GitHub Pages
 ```
 Приложение работает с url репозитория, прописанным в app/config.js.
 
