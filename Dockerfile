@@ -1,8 +1,9 @@
+
 FROM node:slim
 
 WORKDIR /app
 
-COPY . .
+ADD . /app
 
 ENV PORT=80
 ENV NODE_ENV=development

@@ -8,6 +8,10 @@ notifications:
 script:
 - npm run lint
 - npm run build
+job:
+  include:
+    - stage: Deploy
+      script: npm run build
 deploy:
   provider: heroku
   app: sleepy-wave-94267
