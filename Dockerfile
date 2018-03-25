@@ -1,10 +1,10 @@
-FROM ruby:alpine
+FROM node:slim
 
 WORKDIR /app
 
 ADD . /app
 
-RUN npm install --quient
+RUN npm install
 RUN npm run build
 
 ENV PORT=80
