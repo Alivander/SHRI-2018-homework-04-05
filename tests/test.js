@@ -9,7 +9,7 @@ function randomIndex(min, max) {
 
 /* eslint-disable no-undef */
 
-describe('parser', () => {
+describe('parser.js', () => {
   describe('branchesList()', () => {
     it('преобразует строку в массив с названиями веток', () => {
       const fake = '  branch-1   branch-2   branch-3   branch-4 * master ';
