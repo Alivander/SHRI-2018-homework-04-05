@@ -1,6 +1,16 @@
 const assert = require('assert');
 
 /* eslint-disable no-undef */
+
+// module.exports = (hermione, opts) => {
+//   hermione.on(hermione.events.NEW_BROWSER, (browser) => {
+//     browser.addCommand('assertExists', (selector,msg) => {
+//       return browser
+//         .isExisting(selector)
+//         .then((exists) => assert.ok(exsists, msg));
+//     });
+//   });
+// });
 describe('Главная страница', () => {
   describe('Название приложения', () => {
     it('Страница содержит корректный title', () => {
