@@ -11,10 +11,12 @@
     "stylelint": "stylelint \"source/sass/**/*.scss\" --syntax scss",
     "eslint": "node_modules/.bin/eslint ./ --fix --ignore-path .gitignore",
     "lint": "npm run editorconfig && npm run stylelint && npm run eslint",
+    "test": "mocha tests/**/*.js --reporter spec",
     "build": "gulp prod"
   },
   "devDependencies": {
     "@htmlacademy/editorconfig-cli": "1.x",
+    "assert": "^1.4.1",
     "autoprefixer": "7.2.x",
     "chai": "^4.1.2",
     "del": "^3.0.0",
