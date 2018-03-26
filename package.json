@@ -23,6 +23,7 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.9.0",
+    "gemini": "^5.6.2",
     "gh-pages": "^1.1.0",
     "gulp": "3.9.x",
     "gulp-concat": "^2.6.1",
@@ -33,21 +34,28 @@
     "gulp-sass": "3.1.x",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglyfly": "^1.4.2",
+    "hermione": "^0.65.2",
+    "html-reporter": "^2.8.3",
     "mocha": "^5.0.5",
     "run-sequence": "^2.2.1",
     "sinon": "^4.4.8",
     "stylelint": "8.4.x",
     "stylelint-config-htmlacademy": "0.1.x",
-    "travis": "^0.1.1"
+    "travis": "^0.1.1",
+    "webdriverio": "^4.12.0"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "gemini-core": "^2.9.0",
     "git-cli": "^0.10.0",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11"
+    "npm-lifecycle": "^2.0.1",
+    "pug": "2.0.0-beta11",
+    "python": "0.0.4"
   },
   "browserslist": [
     "last 2 versions",
