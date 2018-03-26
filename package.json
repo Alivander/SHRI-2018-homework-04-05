@@ -11,7 +11,7 @@
     "stylelint": "stylelint \"source/sass/**/*.scss\" --syntax scss",
     "eslint": "node_modules/.bin/eslint ./ --fix --ignore-path .gitignore",
     "lint": "npm run editorconfig && npm run stylelint && npm run eslint",
-    "test": "mocha tests/**/*.js --reporter spec",
+    "test": "mocha tests/**/*.js --reporter spec && ./node_modules/.bin/hermione tests/index.hermione.js",
     "build": "gulp prod"
   },
   "devDependencies": {
