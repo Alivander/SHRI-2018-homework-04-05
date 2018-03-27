@@ -7,11 +7,13 @@
   "scripts": {
     "start": "gulp dev && node ./app/bin/www",
     "dev": "gulp dev",
-    "editorconfig": "editorconfig-cli",
-    "stylelint": "stylelint \"source/sass/**/*.scss\" --syntax scss",
-    "eslint": "node_modules/.bin/eslint ./ --fix --ignore-path .gitignore",
-    "lint": "npm run editorconfig && npm run stylelint && npm run eslint",
-    "test": "mocha tests/**/*.js --reporter spec && ./node_modules/.bin/hermione --set common",
+    "lint:edit": "editorconfig-cli fix",
+    "lint:scss": "stylelint \"source/sass/**/*.scss\" --syntax scss",
+    "lint:js": "node_modules/.bin/eslint ./ --fix --ignore-path .gitignore",
+    "lint": "npm run lint:edit && npm run lint:scss && npm run lint:js",
+    "test:unit": "./node_modules/.bin/mocha tests/unit/**/*.js --reporter spec",
+    "test:int": "./node_modules/.bin/hermione --set common",
+    "test": "npm run test:unit && npm run test:int",
     "build": "gulp prod"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const parser = require('../app/util/parser');
+const parser = require('../../app/util/parser');
 
 function randomIndex(min, max) {
   /* eslint-disable no-mixed-operators */
