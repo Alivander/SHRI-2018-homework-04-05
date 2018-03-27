@@ -1,5 +1,11 @@
 const { assert } = require('chai');
-const config = require('../../app/config');
+const { url, host, port } = require('../../app/config');
+
+function randomIndex(min, max) {
+  /* eslint-disable no-mixed-operators */
+  return Math.round(min - 0.5 + Math.random() * (max - min + 1));
+  /* eslint-anable no-mixed-operators */
+}
 
 /* eslint-disable no-undef, func-names */
 describe('Главная страница:', () => {
@@ -34,35 +40,58 @@ describe('Главная страница:', () => {
         });
     });
   });
+
   describe('url текущего репозитория', () => {
     it('отображается url текущего репозитория', function () {
       return this.browser
-        .isExisting('.content__name-repo')
-        .then((url) => {
-          assert.ok(url, 'не отображается url текущего репозитория');
+        .$('.content__name-repo')
+        .then((path) => {
+          assert.ok(path, 'не отображается url текущего репозитория');
         });
     });
     it('url текущего репозитория соответствует ожидаемому', function () {
       return this.browser
         .getText('.content__name-repo')
-        .then((url) => {
-          assert.equal(url, config.url, 'некорректный url текущего репозитория');
+        .then((path) => {
+          assert.equal(path, url, 'некорректный url текущего репозитория');
         });
     });
   });
+
   describe('Ветки:', () => {
     it('отображается список веток', function () {
       return this.browser
-        .isExisting('.branches__list')
-        .then((branches) => {
-          assert.ok(branches, 'не отображается список веток');
+        .$('.branches__list')
+        .then((branchList) => {
+          assert.ok(branchList, 'не отображается список веток');
         });
     });
-    it('первой веткой в списке идет ветка master', function () {
+    it('первой в списке идет ветка master', function () {
       return this.browser
         .getText('.branches__name:first-child a')
         .then((name) => {
           assert.equal(name, 'master', 'первая ветка в списке отлична от master');
+        });
+    });
+    it('при переходе по случайной ветке отображается страница этой ветки', function () {
+      let branch;
+      let branchName;
+
+      return this.browser
+        .$$('.branches__name a')
+        .then((branches) => {
+          branch = branches[randomIndex(0, branches.length - 1)];
+          return branch;
+        })
+        .getText(branch)
+        .then((name) => {
+          branchName = name;
+          return branch;
+        })
+        .click()
+        .getUrl()
+        .then((path) => {
+          assert.equal(path, `http://${host}:${port}/${branchName}`, 'неправильная ссылка у ветки');
         });
     });
   });
