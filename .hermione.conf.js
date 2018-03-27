@@ -1,20 +1,32 @@
-const config = require('./app/config');
+const { host, port } = require('./app/config');
 
 module.exports = {
-  baseUrl: 'http://localhost:' + config.url + '/',
-  gridUrl: 'http://localhost:' + config.url + '/',
+  baseUrl: `http://${host}:${port}`,
+  gridUrl: 'http://localhost:4444/wd/hub',
+
+  sets: {
+    common: {
+      files: './tests/integration/**/*.js'
+    }
+  },
 
   browsers: {
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome'
       }
+    },
+    firefox: {
+      desiredCapabilities: {
+        browserName: 'firefox'
+      }
     }
   },
 
   plugins: {
     'html-reporter/hermione': {
-      path: 'hermione-html-report'
+      path: './report',
+      defaultView: 'all'
     }
   }
 
