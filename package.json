@@ -11,7 +11,7 @@
     "stylelint": "stylelint \"source/sass/**/*.scss\" --syntax scss",
     "eslint": "node_modules/.bin/eslint ./ --fix --ignore-path .gitignore",
     "lint": "npm run editorconfig && npm run stylelint && npm run eslint",
-    "test": "mocha tests/**/*.js --reporter spec && ./node_modules/.bin/hermione tests/index.hermione.js",
+    "test": "mocha tests/**/*.js --reporter spec && ./node_modules/.bin/hermione --set common",
     "build": "gulp prod"
   },
   "devDependencies": {
@@ -23,8 +23,6 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.9.0",
-    "gemini": "^5.6.2",
-    "gh-pages": "^1.1.0",
     "gulp": "3.9.x",
     "gulp-concat": "^2.6.1",
     "gulp-csso": "^3.0.1",
@@ -38,24 +36,19 @@
     "html-reporter": "^2.8.3",
     "mocha": "^5.0.5",
     "run-sequence": "^2.2.1",
-    "sinon": "^4.4.8",
     "stylelint": "8.4.x",
     "stylelint-config-htmlacademy": "0.1.x",
-    "travis": "^0.1.1",
-    "webdriverio": "^4.12.0"
+    "travis": "^0.1.1"
   },
   "dependencies": {
-    "bluebird": "^3.5.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
-    "gemini-core": "^2.9.0",
     "git-cli": "^0.10.0",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "npm-lifecycle": "^2.0.1",
-    "pug": "2.0.0-beta11",
-    "python": "0.0.4"
+    "pug": "2.0.0-beta11"
   },
   "browserslist": [
     "last 2 versions",
