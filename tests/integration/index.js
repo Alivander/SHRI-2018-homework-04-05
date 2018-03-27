@@ -1,11 +1,10 @@
 const { assert } = require('chai');
 const config = require('../../app/config');
-// const webdriverio = require('webdriverio');
 
 /* eslint-disable no-undef, func-names */
 describe('Главная страница:', () => {
   describe('Название:', () => {
-    it('присутствует title', function () {
+    it('проверка наличия title', function () {
       return this.browser
         .url('/')
         .getTitle()
@@ -13,38 +12,57 @@ describe('Главная страница:', () => {
           assert.ok(title, 'title отсутствует');
         });
     });
-    it('title содержит название приложения', function () {
+    it('title соответствует ожидаемому', function () {
       return this.browser
-        .url('/')
         .getTitle()
         .then((title) => {
           assert.equal(title, 'GIT-LOC', 'некорректный title');
         });
     });
-    it('корректный заголовок h1', function () {
+    it('проверка наличия h1', function () {
       return this.browser
-        .url('/')
         .getText('header h1 a')
-        .then((title) => {
-          assert.equal(title, 'GIT-LOC', 'некоректный заголовок h1');
+        .then((heading) => {
+          assert.ok(heading, 'заголовок h1 отсутствует');
+        });
+    });
+    it('заголовок h1 соответствует ожидаемому', function () {
+      return this.browser
+        .getText('header h1 a')
+        .then((heading) => {
+          assert.equal(heading, 'GIT-LOC', 'некоректный заголовок h1');
         });
     });
   });
   describe('url текущего репозитория', () => {
-    it('Должен появиться url репозитория из config.js', function () {
+    it('отображается url текущего репозитория', function () {
       return this.browser
-        .url('/')
         .isExisting('.content__name-repo')
-        .then((exists) => {
-          assert.ok(exists, 'url текущего репозитория отсутствует');
+        .then((url) => {
+          assert.ok(url, 'не отображается url текущего репозитория');
         });
     });
-    it('url, отображаемый на странице, соответсвует url в config.js', function () {
+    it('url текущего репозитория соответствует ожидаемому', function () {
       return this.browser
-        .url('/')
         .getText('.content__name-repo')
         .then((url) => {
           assert.equal(url, config.url, 'некорректный url текущего репозитория');
+        });
+    });
+  });
+  describe('Ветки:', () => {
+    it('отображается список веток', function () {
+      return this.browser
+        .isExisting('.branches__list')
+        .then((branches) => {
+          assert.ok(branches, 'не отображается список веток');
+        });
+    });
+    it('первой веткой в списке идет ветка master', function () {
+      return this.browser
+        .getText('.branches__name:first-child a')
+        .then((name) => {
+          assert.equal(name, 'master', 'первая ветка в списке отлична от master');
         });
     });
   });
