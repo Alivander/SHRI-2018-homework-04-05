@@ -8,7 +8,7 @@ app/public/
 template/
 npm-debug.*
 Thumbs.db
-hermione-html-report/
+report/
 
 # Logs
 logs
