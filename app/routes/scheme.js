@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars, no-console */
-/* for parametrs router (req, res, next) and errorsin con */
+/* for parametrs router (req, res, next) and error, stderr */
 
 const childProcess = require('child_process');
 
