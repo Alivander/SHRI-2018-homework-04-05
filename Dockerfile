@@ -1,14 +1,14 @@
 FROM node:slim
 
-WORKDIR /app
+WORKDIR ./app
 
-ADD . /app
+ADD . ./app
 
-RUN npm install
+RUN npm i
 RUN npm run build
 
 ENV PORT=80
 ENV NODE_ENV=development
-ENV NAME GitLoc
+ENV NAME=GitLoc
 
 CMD npm start -- --port $PORT
