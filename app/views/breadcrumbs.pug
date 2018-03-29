@@ -8,13 +8,13 @@ block breadcrumbs
     - }
       - if (path && path.length) {
         - for (var i = 0; i < path.length - 1; i++) {
-          - var url = path.slice(0, i + 1).join("/");
+          - var linkUrl = path.slice(0, i + 1).join("/");
           - var item = path[i];
             li.breadcrumbs__item
               - if (commit) {
-                  a(href= "/" + branchCurrent + "/" + catalog + "/" + commit + "/" + url)= item
+                  a(href= "/" + branchCurrent + "/" + catalog + "/" + commit + "/" + linkUrl)= item
               - } else {
-                  a(href= "/" + branchCurrent + "/" + catalog + "/" + url)= item
+                  a(href= "/" + branchCurrent + "/" + catalog + "/" + linkUrl)= item
               - }
         - };
         li.breadcrumbs__item= path[path.length - 1]
