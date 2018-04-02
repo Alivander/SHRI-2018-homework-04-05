@@ -28,7 +28,7 @@ jobs:
         - npm run build
       deploy:
         <<: *deploy
-        app:   app: sleepy-wave-94267-master
+        app: sleepy-wave-94267-master
 
     - stage: Deploy (production)
       if: tag IS present
@@ -36,6 +36,6 @@ jobs:
         - npm run build
       deploy:
         <<: *deploy
-        app: app: sleepy-wave-94267-production
+        app: sleepy-wave-94267-production
         on:
           tags: true
