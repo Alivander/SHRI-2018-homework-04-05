@@ -6,7 +6,7 @@ module.exports = {
 
   sets: {
     common: {
-      files: './tests/integration/**/*.js'
+      files: './tests/integration/*.js'
     }
   },
 

@@ -1,61 +1,26 @@
 const { assert } = require('chai');
 const { url, host, port } = require('../../app/config');
 const util = require('./util');
+const common = require('./common');
 
 /* eslint-disable no-undef, func-names */
 describe('Страница дерева файлов:', () => {
-  describe('Название сайта:', () => {
-    it('у вкладки есть title', function () {
-      return this.browser
-        .url('/master/tree')
-        .getTitle()
-        .then((title) => {
-          assert.ok(title);
-        });
-    });
-    it('title соответствует ожидаемому', function () {
-      return this.browser
-        .getTitle()
-        .then((title) => {
-          assert.equal(title, 'GIT-LOC');
-        });
-    });
-    it('на странице есть заголовок h1', function () {
-      return this.browser
-        .getText('header h1 a')
-        .then((heading) => {
-          assert.ok(heading);
-        });
-    });
-    it('заголовок h1 соответствует ожидаемому', function () {
-      return this.browser
-        .getText('header h1 a')
-        .then((heading) => {
-          assert.equal(heading, 'GIT-LOC');
-        });
-    });
+  it('страница существует', function () {
+    return this.browser
+      .url('/master/tree')
+      .status()
+      .then((status) => {
+        assert.ok(status);
+      });
   });
 
-  describe('url текущего репозитория', () => {
-    it('отображается url текущего репозитория', function () {
-      return this.browser
-        .$('.content__name-repo')
-        .then((path) => {
-          assert.ok(path);
-        });
-    });
-    it('url текущего репозитория соответствует ожидаемому', function () {
-      return this.browser
-        .getText('.content__name-repo')
-        .then((path) => {
-          assert.equal(path, url);
-        });
-    });
-  });
+  common.header();
+  common.urlRepo();
 
   describe('breadcrumbs', () => {
     it('отображается список breadcrumbs', function () {
       return this.browser
+        .url('/master/tree')
         .$('.breadcrumbs')
         .then((list) => {
           assert.ok(list);
@@ -63,6 +28,7 @@ describe('Страница дерева файлов:', () => {
     });
     it('содержимое breadcrumbs соответствует ожидаемому', function () {
       return this.browser
+        .url('/master/tree')
         .getText('.breadcrumbs a')
         .then((branch) => {
           assert.equal(branch, 'master');
@@ -70,20 +36,20 @@ describe('Страница дерева файлов:', () => {
     });
     it('ссылка в breadcrumbs работает правильно', function () {
       return this.browser
+        .url('/master/tree')
         .$('.breadcrumbs a')
         .click()
         .getUrl()
         .then((path) => {
           assert.equal(path, `http://${host}:${port}/master`);
-          return true;
-        })
-        .back();
+        });
     });
   });
 
   describe('Дерево файлов:', () => {
     it('отображается дерево файлов', function () {
       return this.browser
+        .url('/master/tree')
         .$('.tree')
         .then((tree) => {
           assert.ok(tree);
@@ -93,6 +59,7 @@ describe('Страница дерева файлов:', () => {
       const treeOriginal = '<li class="tree__item tree__item--folder"><a href="/master/tree/css">css</a></li><li class="tree__item tree__item--folder"><a href="/master/tree/img">img</a></li><li class="tree__item tree__item--folder"><a href="/master/tree/js">js</a></li><li class="tree__item"><a href="/master/tree/README.md">README.md</a></li><li class="tree__item"><a href="/master/tree/index.html">index.html</a></li><li class="tree__item"><a href="/master/tree/inner.html">inner.html</a></li>';
 
       return this.browser
+        .url('/master/tree')
         .getHTML('.tree', false)
         .then((treeHTML) => {
           assert.equal(treeHTML, treeOriginal);
@@ -103,6 +70,7 @@ describe('Страница дерева файлов:', () => {
       let linkName;
 
       return this.browser
+        .url('/master/tree')
         .$$('.tree__item a')
         .then((links) => {
           link = links[util.randomIndex(0, links.length - 1)];
