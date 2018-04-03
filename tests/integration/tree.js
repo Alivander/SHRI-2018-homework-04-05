@@ -56,7 +56,7 @@ describe('Страница дерева файлов:', () => {
         });
     });
     it('отображается правильное дерево файлов', function () {
-      const treeOriginal = '<li class="tree__item tree__item--folder"><a href="/master/tree/css">css</a></li><li class="tree__item tree__item--folder"><a href="/master/tree/img">img</a></li><li class="tree__item tree__item--folder"><a href="/master/tree/js">js</a></li><li class="tree__item"><a href="/master/tree/README.md">README.md</a></li><li class="tree__item"><a href="/master/tree/index.html">index.html</a></li><li class="tree__item"><a href="/master/tree/inner.html">inner.html</a></li>';
+      const treeOriginal = '<li class="tree__item tree__item--folder"><a href="/master/tree/css">css</a></li><li class="tree__item tree__item--folder"><a href="/master/tree/img">img</a></li><li class="tree__item tree__item--folder"><a href="/master/tree/js">js</a></li><li class="tree__item"><a href="/master/tree/README.md">README.md</a></li><li class="tree__item"><a href="/master/tree/index.html">index.html</a></li><li class="tree__item"><a href="/master/tree/inner.html">inner.html</a></li><li class="tree__item"><a href="/master/tree/inner.min.html">inner.min.html</a></li>';
 
       return this.browser
         .url('/master/tree')
