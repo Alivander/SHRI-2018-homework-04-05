@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router({ mergeParams: true });
-const scheme = require('./scheme');
+const scheme = require('../controllers/scheme');
 
 router.get('/', scheme.index);
 
