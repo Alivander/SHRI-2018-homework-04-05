@@ -3,11 +3,13 @@ const { host, port } = require('../../app/config');
 const util = require('./util');
 const common = require('./common');
 
+const branchName = 'master';
+
 /* eslint-disable no-undef, func-names */
 describe('Страница дерева файлов:', () => {
   it('страница существует', function () {
     return this.browser
-      .url('/master/tree')
+      .url(`/${branchName}/tree`)
       .status()
       .then((status) => {
         assert.ok(status);
@@ -18,9 +20,9 @@ describe('Страница дерева файлов:', () => {
   common.urlRepo();
 
   describe('breadcrumbs', () => {
-    it('отображается список breadcrumbs', function () {
+    it('отображаются breadcrumbs', function () {
       return this.browser
-        .url('/master/tree')
+        .url(`/${branchName}/tree`)
         .$('.breadcrumbs')
         .then((list) => {
           assert.ok(list);
@@ -28,20 +30,20 @@ describe('Страница дерева файлов:', () => {
     });
     it('содержимое breadcrumbs соответствует ожидаемому', function () {
       return this.browser
-        .url('/master/tree')
+        .url(`/${branchName}/tree`)
         .getText('.breadcrumbs a')
         .then((branch) => {
-          assert.equal(branch, 'master');
+          assert.equal(branch, branchName);
         });
     });
     it('ссылка на ветку работает правильно', function () {
       return this.browser
-        .url('/master/tree')
+        .url(`/${branchName}/tree`)
         .$('.breadcrumbs a')
         .click()
         .getUrl()
         .then((path) => {
-          assert.equal(path, `http://${host}:${port}/master`);
+          assert.equal(path, `http://${host}:${port}/${branchName}`);
         });
     });
   });
@@ -49,7 +51,7 @@ describe('Страница дерева файлов:', () => {
   describe('Дерево файлов:', () => {
     it('отображается дерево файлов', function () {
       return this.browser
-        .url('/master/tree')
+        .url(`/${branchName}/tree`)
         .$('.tree')
         .then((tree) => {
           assert.ok(tree);
@@ -59,7 +61,7 @@ describe('Страница дерева файлов:', () => {
       const treeOriginal = '<li class="tree__item tree__item--folder"><a href="/master/tree/css">css</a></li><li class="tree__item tree__item--folder"><a href="/master/tree/img">img</a></li><li class="tree__item tree__item--folder"><a href="/master/tree/js">js</a></li><li class="tree__item"><a href="/master/tree/README.md">README.md</a></li><li class="tree__item"><a href="/master/tree/index.html">index.html</a></li><li class="tree__item"><a href="/master/tree/inner.html">inner.html</a></li><li class="tree__item"><a href="/master/tree/inner.min.html">inner.min.html</a></li>';
 
       return this.browser
-        .url('/master/tree')
+        .url(`/${branchName}/tree`)
         .getHTML('.tree', false)
         .then((treeHTML) => {
           assert.equal(treeHTML, treeOriginal);
@@ -70,7 +72,7 @@ describe('Страница дерева файлов:', () => {
       let linkName;
 
       return this.browser
-        .url('/master/tree')
+        .url(`/${branchName}/tree`)
         .$$('.tree__item a')
         .then((links) => {
           link = links[util.randomIndex(0, links.length - 1)];
@@ -84,7 +86,7 @@ describe('Страница дерева файлов:', () => {
         .click()
         .getUrl()
         .then((path) => {
-          assert.equal(path, `http://${host}:${port}/master/tree/${linkName}`);
+          assert.equal(path, `http://${host}:${port}/${branchName}/tree/${linkName}`);
         });
     });
   });

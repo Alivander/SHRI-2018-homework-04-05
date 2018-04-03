@@ -17,7 +17,7 @@ describe('Страница файла:', () => {
   common.urlRepo();
 
   describe('breadcrumbs', () => {
-    it('отображается список breadcrumbs', function () {
+    it('отображаются breadcrumbs', function () {
       return this.browser
         .url('/master/tree/inner.min.html')
         .$('.breadcrumbs')
@@ -54,7 +54,7 @@ describe('Страница файла:', () => {
           assert.ok(preview);
         });
     });
-    it('отображается правильное дерево файлов', function () {
+    it('содержимое файла соответствует ожидаемому', function () {
       const fileOriginal = '&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;&lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;&lt;title&gt;Document&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Inner page&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;';
 
       return this.browser

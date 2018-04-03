@@ -20,7 +20,7 @@ describe('Страница файла из коммита:', () => {
   common.urlRepo();
 
   describe('breadcrumbs', () => {
-    it('отображается список breadcrumbs', function () {
+    it('отображаются breadcrumbs', function () {
       return this.browser
         .url(`/${branchName}/commits/${hashCommit}/README.md`)
         .$('.breadcrumbs')
@@ -69,7 +69,7 @@ describe('Страница файла из коммита:', () => {
           assert.ok(preview);
         });
     });
-    it('отображается правильное дерево файлов', function () {
+    it('содержимое файла соответствует ожидаемому', function () {
       const fileOriginal = '# test\ntest\n';
 
       return this.browser

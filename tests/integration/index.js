@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const { url, host, port } = require('../../app/config');
+const { host, port } = require('../../app/config');
 const util = require('./util');
 const common = require('./common');
 
@@ -27,7 +27,6 @@ describe('Главная страница:', () => {
         });
     });
     it('первой в списке идет ветка master', function () {
-      console.log('THIS BROWSER URL', this.browser.getUrl());
       return this.browser
         .url('/')
         .getText('.branches__name:first-child a')

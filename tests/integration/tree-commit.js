@@ -21,7 +21,7 @@ describe('Страница дерева файлов из коммита:', () =
   common.urlRepo();
 
   describe('breadcrumbs', () => {
-    it('отображается список breadcrumbs', function () {
+    it('отображаются breadcrumbs', function () {
       return this.browser
         .url(`/${branchName}/commits/${hashCommit}`)
         .$('.breadcrumbs')
@@ -67,7 +67,7 @@ describe('Страница дерева файлов из коммита:', () =
           assert.ok(tree);
         });
     });
-    it('отображается правильное дерево файлов', function () {
+    it('содержимое дерева файлов соответствует ожидаемому', function () {
       const treeOriginal = '<li class="tree__item tree__item--folder"><a href="/branch-test-1/commits/2bc76219d1e35e03882d95e724776c6d2e091a09/css">css</a></li><li class="tree__item tree__item--folder"><a href="/branch-test-1/commits/2bc76219d1e35e03882d95e724776c6d2e091a09/img">img</a></li><li class="tree__item tree__item--folder"><a href="/branch-test-1/commits/2bc76219d1e35e03882d95e724776c6d2e091a09/js">js</a></li><li class="tree__item"><a href="/branch-test-1/commits/2bc76219d1e35e03882d95e724776c6d2e091a09/README.md">README.md</a></li><li class="tree__item"><a href="/branch-test-1/commits/2bc76219d1e35e03882d95e724776c6d2e091a09/index.html">index.html</a></li>';
 
       return this.browser

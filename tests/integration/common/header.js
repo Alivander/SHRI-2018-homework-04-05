@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-vars */
 const { assert } = require('chai');
-const { url, host, port } = require('../../../app/config');
-/* eslint-anable no-unused-vars */
 
 /* eslint-disable no-undef, func-names */
 function headerTest() {
