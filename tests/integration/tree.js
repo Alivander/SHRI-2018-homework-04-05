@@ -34,7 +34,7 @@ describe('Страница дерева файлов:', () => {
           assert.equal(branch, 'master');
         });
     });
-    it('ссылка в breadcrumbs работает правильно', function () {
+    it('ссылка на ветку работает правильно', function () {
       return this.browser
         .url('/master/tree')
         .$('.breadcrumbs a')
