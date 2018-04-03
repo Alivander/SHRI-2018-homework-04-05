@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const { url, host, port } = require('../../app/config');
+const { host, port } = require('../../app/config');
 const util = require('./util');
 const common = require('./common');
 
